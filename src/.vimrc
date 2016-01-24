@@ -10,6 +10,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'othree/yajs.vim'
+Plugin 'fatih/vim-go'
+Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-surround'
+Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -22,8 +27,8 @@ au BufRead,BufNewFile *.hamlc set ft=haml
 
 " color scheme
 syntax enable
-colorschem solarized
 set background=dark
+colorscheme solarized
 
 " lines numbered
 set number
@@ -71,6 +76,9 @@ function ToggleComment()
 		let comment_end   = ' \*\/'
 	endif
   if &filetype == 'scss'
+    let comment_start ='\/\/'
+  endif
+  if &filetype == 'go'
     let comment_start ='\/\/'
   endif
 	" if the comment start is at the beginning of the line and isn't followed
