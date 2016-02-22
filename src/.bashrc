@@ -129,6 +129,7 @@ alias bx='bundle exec'
 
 # custom alias for bundle exec
 alias bxrst='bundle exec rails s thin'
+alias bxrc='bundle exec rails c'
 
 # show git branch in prompt
 parse_git_branch() {
