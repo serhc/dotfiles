@@ -94,6 +94,12 @@ alias l='ls -CF'
 alias chrome='nohup google-chrome > /dev/null &'
 alias spotify='nohup spotify > /dev/null &'
 
+# shortcut alias
+alias bx='bundle exec'
+alias bxrst='bundle exec rails s thin'
+alias bxrc='bundle exec rails console'
+alias 9='killrails.sh'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -123,13 +129,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-# custom alias for bundle exec
-alias bx='bundle exec'
-
-# custom alias for bundle exec
-alias bxrst='bundle exec rails s thin'
-alias bxrc='bundle exec rails c'
 
 # show git branch in prompt
 parse_git_branch() {
@@ -167,6 +166,8 @@ xterm*|rxvt*)
 esac
 
 export TERM=screen-256color
-
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export PATH="/usr/bin:$PATH"
 eval "$(rbenv init -)"
+
