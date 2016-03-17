@@ -45,10 +45,10 @@ EOF
 	exit 1
 fi
 
-AWFUL_FORBIDDEN_WORDS='byebug advil'
+AWFUL_FORBIDDEN_WORDS='byebug debugger'
 COMBINED=$(echo $AWFUL_FORBIDDEN_WORDS | sed 's/ /\\\|/g')
 if
-  GUILTY_PARTY=$(git diff --cached --name-only) 
+  GUILTY_PARTY=$(git diff --cached --name-only)
   test $(git diff --cached | grep $COMBINED | wc -l) != 0
 then
   echo 'your commit contains bad words:'
