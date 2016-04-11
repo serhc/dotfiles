@@ -7,17 +7,25 @@ import System.IO
 import XMonad.Util.Run
 
 main = do
-  xmproc <- spawnPipe "xmobar .xmobarrc"          -- start xmobar
+  xmproc <- spawnPipe "xmobar  .xmobarrc"         -- start xmobar
   xmproc <- spawnPipe "xmodmap .xmodmap"          -- set capslock to escape (for vim)
-  xmproc <- spawnPipe "synclient MaxTapTime=0"    -- disable tap to highlight
-  xmproc <- spawnPipe "gnome-terminal"            -- start gnome terminal
-  xmproc <- spawnPipe "redshift"                    -- start chrome
+  xmproc <- spawnPipe "synclient MaxTapTime=0"    -- disable tap to highlight (mbp specific)
+  xmproc <- spawnPipe "gnome-terminal"            -- start terminal
+  xmproc <- spawnPipe "redshift"                  -- start redshift (screen temp prog)
 
   xmonad $ defaultConfig
     { borderWidth = 3
     , focusedBorderColor = sol_magenta
     , manageHook = manageHook defaultConfig <+> manageDocks
-    }
+    } `additionalKeys`
+    -- 0 as arg ignores pressing of mod key
+    [
+      ((0, volume_down), spawn "amixer set Master 5-")
+    , ((0, volume_up  ), spawn "amixer set Master 5+")
+    , ((0, volume_mute), spawn "amixer -D pulse set Master toggle")
+    -- ((0, screen_light_down), spawn "echo $[`cat brightness` - 25] | sudo tee /sys/class/backlight/gmux_backlight/backlight"),
+    -- ((0, screen_light_up  ), spawn "echo $[`cat brightness` + 25] | sudo tee /sys/class/backlight/gmux_backlight/backlight")
+    ]
 
     where
       -- solarized colors
@@ -33,3 +41,12 @@ main = do
       -- other colors
       lime_green  = "#c9ff00"
       powder_pink = "#ffcce7"
+
+      -- fn keybinds
+      kb_light_down     = 0x1008ff06
+      kb_light_up       = 0x1008ff05
+      screen_light_down = 0x1008ff03
+      screen_light_up   = 0x1008ff02
+      volume_mute       = 0x1008ff12
+      volume_down       = 0x1008ff11
+      volume_up         = 0x1008ff13
