@@ -88,10 +88,10 @@ fi
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
 
 # program aliases for xmonad
 alias chrome='nohup google-chrome > /dev/null &'
+alias firefox='nohup firefox > /dev/null &'
 alias spotify='nohup spotify > /dev/null &'
 
 # shortcut alias
@@ -99,6 +99,10 @@ alias bx='bundle exec'
 alias bxrst='bundle exec rails s thin'
 alias bxrc='bundle exec rails console'
 alias 9='killrails.sh'
+alias l='set_light.sh'
+alias d='set_dark.sh'
+alias pt='sudo powertop --auto-tune'
+alias emacs='emacs -nw'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -165,9 +169,12 @@ xterm*|rxvt*)
     ;;
 esac
 
+# import db login aliases
+. ~/.pg_aliases
+
 export TERM=screen-256color
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/.vim/gnome-terminal-colors-solarized:$PATH"
 export PATH="/usr/bin:$PATH"
-eval "$(rbenv init -)"
 
