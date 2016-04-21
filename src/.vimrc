@@ -48,6 +48,9 @@ set smartcase
 highlight ExtraWhitespace ctermbg=magenta
 match ExtraWhitespace /\s\+$/
 
+" clipboard
+set clipboard=unnamedplus
+
 
 " toggle a comment for a line
 " see http://www.perlmonks.org/?node_id=561215 for more info
@@ -94,6 +97,17 @@ function ToggleComment()
 endfunction
 map <silent> X :call ToggleComment()<cr>
 
+function CleanSQL()
+  silent! %s/\\n/\r/g
+  silent! %s/\(as \w*,\)/\1\r/g
+  silent! %s/\s*\n/\r/g
+  execute "normal! gg=G"
+endfunction
+
+function CTWS()
+  silent! %s/\s*\n/\r/g
+  execute "normal! dd"
+endfunction
+
 :command L set background=light
 :command D set background=dark
-
