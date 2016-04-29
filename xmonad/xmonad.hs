@@ -17,6 +17,8 @@ main = do
     { borderWidth = 3
     , focusedBorderColor = sol_magenta
     , manageHook = manageHook defaultConfig <+> manageDocks
+    , layoutHook = avoidStruts (tall)
+
     } `additionalKeys`
     -- 0 as arg ignores pressing of mod key
     [
@@ -50,3 +52,6 @@ main = do
       volume_mute       = 0x1008ff12
       volume_down       = 0x1008ff11
       volume_up         = 0x1008ff13
+
+      -- layout modes
+      tall = Tall 1 (3/100) (1/2)
