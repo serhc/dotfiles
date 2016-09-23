@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Config.Gnome -- for gnome-vim
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig(additionalKeys)
@@ -7,18 +8,19 @@ import System.IO
 import XMonad.Util.Run
 
 main = do
-  xmproc <- spawnPipe "xmobar  .xmobarrc"         -- start xmobar
+--  xmproc <- spawnPipe "xmobar  .xmobarrc"         -- start xmobar
   xmproc <- spawnPipe "xmodmap .xmodmap"          -- set capslock to escape (for vim)
   xmproc <- spawnPipe "synclient MaxTapTime=0"    -- disable tap to highlight (mbp specific)
   xmproc <- spawnPipe "gnome-terminal"            -- start terminal
-  xmproc <- spawnPipe "redshift"                  -- start redshift (screen temp prog)
+  --xmproc <- spawnPipe "redshift"                  -- start redshift (screen temp prog)
+  --mproc <- spawnPipe "nohup nautilus &"          -- start nautilus (for term transparency)
 
-  xmonad $ defaultConfig
+  xmonad $ gnomeConfig
+--  xmonad $ defaultConfig
     { borderWidth = 3
     , focusedBorderColor = sol_magenta
     , manageHook = manageHook defaultConfig <+> manageDocks
     , layoutHook = avoidStruts (tall)
-
     } `additionalKeys`
     -- 0 as arg ignores pressing of mod key
     [
