@@ -6,32 +6,38 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'othree/yajs.vim'
-Plugin 'fatih/vim-go'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-surround'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'fatih/vim-go'
+Plugin 'takac/vim-spotifysearch'
 
 call vundle#end()
 filetype plugin indent on
 
-
-autocmd vimenter * NERDTree
-
+"autocmd vimenter * NERDTree
 let NERDTreeShowHidden=1
 au BufRead,BufNewFile *.hamlc set ft=haml
 
 " color scheme
 syntax enable
+set t_Co=256
 set background=dark
+hi Normal ctermbg=none
+hi NonText ctermbg=none
+"colorscheme zenburn
+"let g:zenburn_transparent=1
+let g:solarized_termtrans=1
 colorscheme solarized
 
 " lines numbered
 set number
+"set relativenumber
 
 " spacing/tabs
 set tabstop=2
@@ -41,6 +47,7 @@ set expandtab
 
 " search options
 set hlsearch
+set incsearch
 set ignorecase
 set smartcase
 
@@ -49,7 +56,16 @@ highlight ExtraWhitespace ctermbg=magenta
 match ExtraWhitespace /\s\+$/
 
 " clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
+
+" linewrapping
+set nowrap
+
+" redraw performance
+set lazyredraw
+
+" singular swapfile directory
+set directory=$HOME/.vim/swps
 
 
 " toggle a comment for a line
@@ -102,6 +118,7 @@ function CleanSQL()
   silent! %s/\(as \w*,\)/\1\r/g
   silent! %s/\s*\n/\r/g
   execute "normal! gg=G"
+  silent! set ft=sql
 endfunction
 
 function CTWS()
@@ -111,3 +128,10 @@ endfunction
 
 :command L set background=light
 :command D set background=dark
+:command NT :NERDTree
+:command Z colors zenburn |
+           \ let g:zenburn_transparent=1
+:command S colorscheme solarized |
+           \ let g:solarized_termtrans=1 |
+           \ set background=dark
+:command E :Explore
