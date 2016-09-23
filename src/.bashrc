@@ -177,4 +177,4 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.vim/gnome-terminal-colors-solarized:$PATH"
 export PATH="/usr/bin:$PATH"
-
+eval "$(rbenv init -)"
