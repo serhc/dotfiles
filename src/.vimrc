@@ -67,6 +67,9 @@ set lazyredraw
 " singular swapfile directory
 set directory=$HOME/.vim/swps
 
+" swp directory
+set directory=~/.vim/swp//
+
 
 " toggle a comment for a line
 " see http://www.perlmonks.org/?node_id=561215 for more info
