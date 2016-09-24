@@ -3,7 +3,7 @@
 # assumes ubuntu
 
 # copy configs abd scripts
-cp src/*  ~
+cp -r src/.  ~
 cp -R scripts ~
 cp -R xmonad ~
 
