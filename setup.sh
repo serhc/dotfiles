@@ -18,4 +18,5 @@ git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 
 # set up other utilities
 sudo apt-get -y install silversearcher-ag
+sudo apt-get -y install postgresql
 sudo apt-get -y install xmonad
