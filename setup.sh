@@ -14,7 +14,7 @@ mkdir ~/.vim/swps
 mkdir ~/.vim/plugins
 cp vim_plugins/* ~/.vim/plugins
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.vim/
 
 # set up other utilities
 sudo apt-get -y install silversearcher-ag
