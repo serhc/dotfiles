@@ -1,6 +1,5 @@
 #!/bin/bash
-# run in top level repo directory
-# assumes ubuntu
+# run in /dotfiles
 
 # copy configs and scripts
 cp -r src/.  ~
