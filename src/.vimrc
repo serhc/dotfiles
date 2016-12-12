@@ -1,26 +1,38 @@
-" first run in ~ : git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" for setup, run in $HOME:
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/vundle.vim'
-Plugin 'flazz/vim-colorschemes'
+"general productivity
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'gmarik/vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vimwiki/vimwiki'
+
+"prettiness
+Plugin 'flazz/vim-colorschemes'
+
+"syntax highlighting
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'fatih/vim-go'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-surround'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'fatih/vim-go'
-Plugin 'takac/vim-spotifysearch'
 
 call vundle#end()
 filetype plugin indent on
 
-"autocmd vimenter * NERDTree
+"""""""""""""""""""""""""
+" plugin configurations
+
+"""""""""""""""""""""""""
 let NERDTreeShowHidden=1
 au BufRead,BufNewFile *.hamlc set ft=haml
 
@@ -30,10 +42,21 @@ set t_Co=256
 set background=dark
 hi Normal ctermbg=none
 hi NonText ctermbg=none
-"colorscheme zenburn
-"let g:zenburn_transparent=1
 let g:solarized_termtrans=1
 colorscheme solarized
+
+" vim airline
+" allow airline to open on startup
+set laststatus=2
+
+" set vim airline theme
+let g:airline_theme='solarized'
+
+
+"""""""""""""""""""""""""
+" vim core configurations
+
+"""""""""""""""""""""""""
 
 " lines numbered
 set number
@@ -67,9 +90,6 @@ set lazyredraw
 " singular swapfile directory
 set directory=$HOME/.vim/swps
 
-" swp directory
-set directory=~/.vim/swp//
-
 
 " toggle a comment for a line
 " see http://www.perlmonks.org/?node_id=561215 for more info
@@ -89,6 +109,9 @@ function ToggleComment()
 	if &filetype == 'haskell'
 		let comment_start = '--'
 	endif
+  if &filetype == 'scala'
+    let comment_start = '\/\/'
+  endif
 	if &filetype == 'javascript'
 		let comment_start = '\/\/'
 	endif
@@ -102,6 +125,9 @@ function ToggleComment()
   endif
   if &filetype == 'go'
     let comment_start ='\/\/'
+  endif
+  if &filetype == 'cljs'
+    let comment_start = ';;'
   endif
 	" if the comment start is at the beginning of the line and isn't followed
 	" by a space (i.e. the most likely form of an actual comment, to keep from
@@ -132,8 +158,6 @@ endfunction
 :command L set background=light
 :command D set background=dark
 :command NT :NERDTree
-:command Z colors zenburn |
-           \ let g:zenburn_transparent=1
 :command S colorscheme solarized |
            \ let g:solarized_termtrans=1 |
            \ set background=dark
