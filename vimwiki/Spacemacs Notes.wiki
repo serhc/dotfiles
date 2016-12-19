@@ -1,0 +1,8 @@
+comment block
+=====================
+SPC ; (MOTION)
+or VISUAL BLOCK SCP ;
+
+modify window (split)
+======================
+SPC w . [ OR ]

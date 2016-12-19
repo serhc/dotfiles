@@ -4,4 +4,4 @@
 * [[ScratchPad]]
 * [[Ruby Notes]]
 * [[Javascript Notes]]
-
+* [[Spacemacs Notes]]
