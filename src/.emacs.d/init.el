@@ -26,18 +26,19 @@
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
 
-;; general qol
+;; general q
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; productivity plugins
-(use-package powerline)
+(use-package spaceline
+  :init
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme))
 
 ;; theme / color packages
 (use-package moe-theme
-  :config
-    (moe-dark)
-    (powerline-moe-theme))
+  :config (moe-dark))
 
 ;; magit / git stuff
 (use-package magit)
@@ -49,15 +50,15 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;; in file autocompletion
 (use-package company
   :init (add-hook 'after-init-hook 'global-company-mode))
 
-;; indentation fixing
+;; tab / indentation fixing
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
-(setq coffee-tab-width 2)
 (add-hook 'coffee-mode-hook (lambda ()
                               (setq coffee-tab-width 2)))
 
@@ -72,9 +73,25 @@
 
 
 (use-package evil
-  :init
+  :config
   (evil-mode 1)
   (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right))
+
+;; ysiw for yank-around-in-word
+;; visual select S" for surround vs
+(use-package evil-surround
+  :config (global-evil-surround-mode 1))
+
+(use-package evil-leader
+  :config
+  (global-evil-leader-mode)
+  (evil-leader/set-leader "SPC")
+  (evil-leader/set-key
+    "ff" 'helm-find-files
+    "e!" 'revert-buffer
+    "gb" 'magit-blame
+    "gd" 'magit-diff
+    ))
