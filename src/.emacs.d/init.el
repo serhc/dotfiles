@@ -31,10 +31,8 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; productivity plugins
-(use-package spaceline
-  :init
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme))
+(use-package powerline
+  :config (powerline-default-theme))
 
 ;; theme / color packages
 (use-package moe-theme
@@ -45,9 +43,9 @@
 (use-package evil-magit)
 
 ;; helm / autocompletion
-(require 'helm)
-(require 'helm-config)
-(require 'helm-projectile)
+(use-package 'helm)
+(use-package 'helm-config)
+(use-package 'helm-projectile)
 (helm-projectile-on)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -62,6 +60,10 @@
 (add-hook 'coffee-mode-hook (lambda ()
                               (setq coffee-tab-width 2)))
 
+;; smooth scrolling
+(use-package smooth-scrolling-mode
+  :config (smooth-scrolling-mode 1))
+
 ;; editing / view productivity
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'subword-mode)
@@ -71,10 +73,10 @@
 (column-number-mode 1)
 (set-default 'truncate-lines t)
 
-
 (use-package evil
   :config
   (evil-mode 1)
+  (setq evil-want-fine-undo t)
   (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-down)
@@ -93,5 +95,6 @@
     "ff" 'helm-find-files
     "e!" 'revert-buffer
     "gb" 'magit-blame
-    "gd" 'magit-diff
+    "gd" 'vc-diff
+    "h"  'help
     ))

@@ -90,7 +90,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 
 # program aliases for xmonad
-alias chrome='nohup google-chrome > /dev/null &'
+alias chrome='nohup google-chrome-stable > /dev/null &'
 alias firefox='nohup firefox > /dev/null &'
 alias spotify='nohup spotify > /dev/null &'
 
@@ -102,7 +102,19 @@ alias 9='killrails.sh'
 alias l='set_light.sh'
 alias d='set_dark.sh'
 alias pt='sudo powertop --auto-tune'
+
 alias emacs='emacs -nw'
+alias emcas='emacs -nw'
+#alias em='emacsclient -t'
+alias em='emacs_bg'
+emacs_bg () {
+  nohup emacsclient -c "$@" &>/dev/null &
+}
+alias kem='killemacs'
+alias dem='DISPLAY= emacs -nw --daemon'
+
+alias g='git'
+alias grep='ag'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -172,7 +184,7 @@ esac
 # import db login aliases
 . ~/.pg_aliases
 
-export TERM=screen-256color
+export TERM="xterm-256color"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.vim/gnome-terminal-colors-solarized:$PATH"
