@@ -1,0 +1,7 @@
+= Notes =
+* [[Tasks]]
+* [[Books]]
+* [[ScratchPad]]
+* [[Ruby Notes]]
+* [[Javascript Notes]]
+* [[Spacemacs Notes]]
