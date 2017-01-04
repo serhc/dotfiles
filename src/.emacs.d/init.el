@@ -43,9 +43,8 @@
 (use-package evil-magit)
 
 ;; helm / autocompletion
-(use-package 'helm)
-(use-package 'helm-config)
-(use-package 'helm-projectile)
+(use-package helm)
+(use-package helm-projectile)
 (helm-projectile-on)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -61,7 +60,7 @@
                               (setq coffee-tab-width 2)))
 
 ;; smooth scrolling
-(use-package smooth-scrolling-mode
+(use-package smooth-scrolling
   :config (smooth-scrolling-mode 1))
 
 ;; editing / view productivity
