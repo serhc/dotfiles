@@ -104,7 +104,11 @@ alias emacs='emacs -nw'
 alias emcas='emacs -nw'
 alias kem="ps aux | ag emacs | awk '{print $2}' | xargs kill -9"
 alias dem='DISPLAY= emacs -nw --daemon'
-alias em='nohup emacsclient -c "$@" &>/dev/null &'
+alias em=open_emacs
+open_emacs () {
+    file=${1-'.'}
+    nohup emacsclient -c $file &>/dev/null &
+}
 alias g='git'
 alias grep='ag'
 
