@@ -94,25 +94,17 @@ alias chrome='nohup google-chrome-stable > /dev/null &'
 alias firefox='nohup firefox > /dev/null &'
 alias spotify='nohup spotify > /dev/null &'
 
-# shortcut alias
+# shortcut aliases
 alias bx='bundle exec'
 alias bxrst='bundle exec rails s thin'
 alias bxrc='bundle exec rails console'
-alias 9='killrails.sh'
-alias l='set_light.sh'
-alias d='set_dark.sh'
+alias 9="ps aux | ag rails | awk '{print $2}' | xargs kill -9"
 alias pt='sudo powertop --auto-tune'
-
 alias emacs='emacs -nw'
 alias emcas='emacs -nw'
-#alias em='emacsclient -t'
-alias em='emacs_bg'
-emacs_bg () {
-  nohup emacsclient -c "$@" &>/dev/null &
-}
-alias kem='killemacs'
+alias kem="ps aux | ag emacs | awk '{print $2}' | xargs kill -9"
 alias dem='DISPLAY= emacs -nw --daemon'
-
+alias em='nohup emacsclient -c "$@" &>/dev/null &'
 alias g='git'
 alias grep='ag'
 
