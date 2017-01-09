@@ -17,6 +17,10 @@ git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.vi
 cd ~/ ; ln -sf 'dotfiles/vimwiki' .
 cd dotfiles
 
+# set up emacs el
+cd ~/ ; ln -sf 'dotfiles/src/.emacs.d' .
+cd dotfiles
+
 # set up other utilities
 sudo apt-get -y install silversearcher-ag
 sudo apt-get -y install postgresql

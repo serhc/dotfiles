@@ -11,12 +11,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; set clipboard copy/paste action (only works in gui)
-(setq yank-pop-change-selection t
-      x-select-enable-clipboard t
-      select-enable-clipboard t
-      x-select-enable-primary t)
-
 ;; set gui /display options
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -26,15 +20,13 @@
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
 
-;; general q
+;; general qol
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; productivity plugins
-(use-package spaceline
-  :init
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme))
+(use-package powerline
+  :config (powerline-default-theme))
 
 ;; theme / color packages
 (use-package moe-theme
@@ -45,10 +37,11 @@
 (use-package evil-magit)
 
 ;; helm / autocompletion
-(require 'helm)
-(require 'helm-config)
-(require 'helm-projectile)
-(helm-projectile-on)
+(use-package helm)
+(use-package helm-projectile
+  :config
+  (helm-projectile-on)
+  (projectile-global-mode))
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
@@ -62,6 +55,16 @@
 (add-hook 'coffee-mode-hook (lambda ()
                               (setq coffee-tab-width 2)))
 
+;; smooth scrolling
+(use-package smooth-scrolling
+  :config (smooth-scrolling-mode 1))
+
+;; set clipboard copy/paste action (only works in gui)
+(setq yank-pop-change-selection t
+      x-select-enable-clipboard t
+      select-enable-clipboard t
+      x-select-enable-primary t)
+
 ;; editing / view productivity
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'subword-mode)
@@ -71,27 +74,35 @@
 (column-number-mode 1)
 (set-default 'truncate-lines t)
 
-
-(use-package evil
-  :config
-  (evil-mode 1)
-  (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right))
-
 ;; ysiw for yank-around-in-word
 ;; visual select S" for surround vs
 (use-package evil-surround
   :config (global-evil-surround-mode 1))
 
 (use-package evil-leader
-  :config
+  :init
   (global-evil-leader-mode)
   (evil-leader/set-leader "SPC")
   (evil-leader/set-key
-    "ff" 'helm-find-files
     "e!" 'revert-buffer
+    "fb" 'list-buffers
+    "ff" 'helm-find-files
     "gb" 'magit-blame
-    "gd" 'magit-diff
+    "gd" 'vc-diff
+    "h"  'help
+    "pf" 'helm-projectile-find-file
+    "w+" (lambda () (interactive) (evil-window-increase-width 15))
+    "w-" (lambda () (interactive) (evil-window-decrease-width 15))
+    "x"  'comment-region
     ))
+
+;; finally set all evil settings
+(use-package evil
+  :config
+  (evil-mode 1)
+  (setq evil-want-fine-undo t)
+  (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right))
+))
