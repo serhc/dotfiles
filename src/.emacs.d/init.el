@@ -18,7 +18,7 @@
 
 ;; prevent file system litter
 (setq make-backup-files nil)
-(setq create-lockfiles nil)
+(setq-default create-lockfiles nil)
 
 ;; general qol
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -52,8 +52,13 @@
 ;; tab / indentation fixing
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
-(add-hook 'coffee-mode-hook (lambda ()
-                              (setq coffee-tab-width 2)))
+(use-package coffee-mode
+  :init (add-hook 'coffee-mode-hook (lambda ()
+                              (setq coffee-tab-width 2))))
+(use-package yaml-mode)
+(use-package haskell-mode)
+(use-package haml-mode)
+(use-package sass-mode)
 
 ;; smooth scrolling
 (use-package smooth-scrolling
@@ -74,6 +79,7 @@
 (column-number-mode 1)
 (set-default 'truncate-lines t)
 
+
 ;; ysiw for yank-around-in-word
 ;; visual select S" for surround vs
 (use-package evil-surround
@@ -85,8 +91,9 @@
   (evil-leader/set-leader "SPC")
   (evil-leader/set-key
     "e!" 'revert-buffer
-    "fb" 'list-buffers
+    "fb" 'helm-mini
     "ff" 'helm-find-files
+    "fs" 'helm-semantic-or-imenu
     "gb" 'magit-blame
     "gd" 'vc-diff
     "h"  'help
@@ -105,4 +112,5 @@
   (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right))
-))
+
+(message "load success")

@@ -1,2 +1,5 @@
 	src/.emacs.d/elpa/
 	src/.emacs.d/projectile-bookmarks.eld
+	src/.emacs.d/elpa/
+	src/.emacs.d/projectile-bookmarks.eld
+	src/.emacs.d/projectile.cache
