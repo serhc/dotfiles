@@ -177,9 +177,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# import db login aliases
-. ~/.pg_aliases
-
 export TERM="xterm-256color"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"

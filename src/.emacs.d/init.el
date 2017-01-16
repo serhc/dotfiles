@@ -19,6 +19,7 @@
 ;; prevent file system litter
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
+(setq-default create-lockfiles nil)
 
 ;; general qol
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -74,6 +75,11 @@
 (column-number-mode 1)
 (set-default 'truncate-lines t)
 
+;; language / markup plugins
+(use-package haskell-mode)
+(use-package yaml-mode)
+
+
 ;; ysiw for yank-around-in-word
 ;; visual select S" for surround vs
 (use-package evil-surround
@@ -93,7 +99,7 @@
     "pf" 'helm-projectile-find-file
     "w+" (lambda () (interactive) (evil-window-increase-width 15))
     "w-" (lambda () (interactive) (evil-window-decrease-width 15))
-    "x"  'comment-region
+    "x"  'comment-or-uncomment-region
     ))
 
 ;; finally set all evil settings
@@ -105,4 +111,3 @@
   (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right))
-))
