@@ -7,10 +7,10 @@ cp -R scripts ~
 cp -R xmonad ~
 
 # set up vim folders
-sudo apt-get -y install gnome-vim
+sudo apt-get -y install vim-gnome
 mkdir ~/.vim
 mkdir ~/.vim/swps
-mkdir ~/.vim/plugins
+mkdir ~/.vim/plugin
 cp vim_plugins/* ~/.vim/plugin
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.vim/
@@ -56,5 +56,5 @@ echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sourc
 
 # update, install
 sudo apt-get update
-sudo apt-get install spotify-client
-sudo apt-get install google-chrome-stable
+sudo apt-get install -y spotify-client
+sudo apt-get install -y google-chrome-stable
