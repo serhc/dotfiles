@@ -1,6 +1,6 @@
-;; set up core package host
+; set up core package host
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 ;; load use-package
@@ -19,11 +19,16 @@
 ;; prevent file system litter
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
+(setq auto-save-default nil)
 (setq-default create-lockfiles nil)
 
 ;; general qol
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "RET") 'newline-and-indent)
+;; disable GNU copyright shortcuts
+(global-unset-key (kbd "\C-h \C-w"))
+(global-unset-key (kbd "\C-h \C-c"))
+(use-package column-marker)
 
 ;; productivity plugins
 (use-package powerline
@@ -55,11 +60,16 @@
 (setq tab-width 2)
 (use-package coffee-mode
   :init (add-hook 'coffee-mode-hook (lambda ()
-                              (setq coffee-tab-width 2))))
+                                      (setq coffee-tab-width 2))))
+
+(use-package rainbow-mode)
 (use-package yaml-mode)
 (use-package haskell-mode)
 (use-package haml-mode)
-(use-package sass-mode)
+(use-package scss-mode
+  :config
+  (setq css-indent-offset 2)
+  (add-hook 'scss-mode-hook (lambda () ('rainbow-mode))))
 
 ;; smooth scrolling
 (use-package smooth-scrolling
@@ -73,7 +83,7 @@
 
 ;; editing / view productivity
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'prog-mode-hook 'subword-mode)
+;; (add-hook 'prog-mode-hook 'subword-mode)
 (desktop-save-mode 1)
 (show-paren-mode t)
 (global-linum-mode t)
@@ -82,6 +92,7 @@
 
 ;; language / markup plugins
 (use-package haskell-mode)
+(use-package elixir-mode)
 (use-package yaml-mode)
 
 ;; ysiw for yank-around-in-word
@@ -99,7 +110,7 @@
     "ff" 'helm-find-files
     "fs" 'helm-semantic-or-imenu
     "gb" 'magit-blame
-    "gd" 'vc-diff
+    "gd" 'magit-diff
     "h"  'help
     "pf" 'helm-projectile-find-file
     "w+" (lambda () (interactive) (evil-window-increase-width 15))
@@ -118,3 +129,17 @@
   (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right))
 
 (message "load success")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (column-marker elixir-mode scss-mode rainbow-mode evil-leader evil-surround smooth-scrolling sass-mode haml-mode haskell-mode yaml-mode coffee-mode company helm-projectile helm evil-magit magit moe-theme powerline use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
