@@ -90,6 +90,9 @@ set lazyredraw
 " singular swapfile directory
 set directory=$HOME/.vim/swps
 
+" disable beeping in WSL
+set visualbell
+set t_vb=
 
 " toggle a comment for a line
 " see http://www.perlmonks.org/?node_id=561215 for more info
