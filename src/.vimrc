@@ -1,11 +1,9 @@
 " for setup, run in $HOME:
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 "general productivity
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -18,6 +16,7 @@ Plugin 'vimwiki/vimwiki'
 
 "prettiness
 Plugin 'flazz/vim-colorschemes'
+Plugin 'prettier/vim-prettier'
 
 "syntax highlighting
 Plugin 'cakebaker/scss-syntax.vim'
@@ -34,6 +33,9 @@ filetype plugin indent on
 
 """""""""""""""""""""""""
 let NERDTreeShowHidden=1
+let g:NERDTreeNodeDelimiter = "\u00a0"
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 au BufRead,BufNewFile *.hamlc set ft=haml
 
 " color scheme
@@ -52,12 +54,12 @@ set laststatus=2
 " set vim airline theme
 let g:airline_theme='solarized'
 
+" ctrl-p ignored directories
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 """""""""""""""""""""""""
 " vim core configurations
-
 """""""""""""""""""""""""
-
 " lines numbered
 set number
 "set relativenumber
