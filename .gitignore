@@ -1,5 +1,7 @@
-	src/.emacs.d/elpa/
-	src/.emacs.d/projectile-bookmarks.eld
-	src/.emacs.d/elpa/
-	src/.emacs.d/projectile-bookmarks.eld
-	src/.emacs.d/projectile.cache
+src/.emacs.d/.emacs.desktop
+src/.emacs.d/.emacs.desktop.lock
+src/.emacs.d/elpa/
+src/.emacs.d/eshell/
+src/.emacs.d/projectile-bookmarks.eld
+src/.emacs.d/projectile.cache
+src/.emacs.d/recentf
