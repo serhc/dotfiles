@@ -1,0 +1,64 @@
+#  NOTE(koekeishiya):
+#    A list of all built-in modifier and literal keywords can be found at
+#    https://github.com/koekeishiya/skhd/issues/1
+#
+# open terminal, blazingly fast compared to iTerm/Hyper
+cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2 --single-instance -d ~
+
+# close focused window
+alt - w : chunkc tiling::window --close
+
+# focus window
+alt - j : chunkc tiling::window --focus prev
+alt - k : chunkc tiling::window --focus next
+alt - h : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+alt - l : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+# equalize size of windows
+shift + alt - 0 : chunkc tiling::desktop --equalize
+
+# swap window
+shift + alt - h : chunkc tiling::window --swap west
+shift + alt - j : chunkc tiling::window --swap south
+shift + alt - k : chunkc tiling::window --swap north
+shift + alt - l : chunkc tiling::window --swap east
+
+# fast focus desktop
+alt - 1 : chunkc tiling::desktop --focus 1
+alt - 2 : chunkc tiling::desktop --focus 2
+alt - 3 : chunkc tiling::desktop --focus 3
+alt - 4 : chunkc tiling::desktop --focus 4
+alt - 5 : chunkc tiling::desktop --focus 5
+alt - 6 : chunkc tiling::desktop --focus 6
+alt - 7 : chunkc tiling::desktop --focus 6
+
+# send window to desktop
+shift + alt - 1 : chunkc tiling::window --send-to-desktop 1
+shift + alt - 2 : chunkc tiling::window --send-to-desktop 2
+shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
+shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
+shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
+shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
+shift + alt - 7 : chunkc tiling::window --send-to-desktop 7
+
+# rotate tree
+alt - r : chunkc tiling::desktop --rotate 90
+
+# toggle window fullscreen
+alt - f : chunkc tiling::window --toggle fullscreen
+
+# toggle window native fullscreen
+shift + alt - f : chunkc tiling::window --toggle native-fullscreen
+
+# float / unfloat window and center on screen
+alt - t : chunkc tiling::window --toggle float;\
+          chunkc tiling::window --grid-layout 4:4:1:1:2:2
+
+# change layout of desktop
+ctrl + alt - a : chunkc tiling::desktop --layout bsp
+ctrl + alt - s : chunkc tiling::desktop --layout monocle
+ctrl + alt - d : chunkc tiling::desktop --layout float
+
+ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
+
+
