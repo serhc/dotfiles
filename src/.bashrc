@@ -1,6 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# fo examples
 
 
 # If not running interactively, don't do anything
@@ -96,14 +96,15 @@ alias spotify='nohup spotify > /dev/null &'
 
 # shortcut aliases
 alias bx='bundle exec'
-alias bxrst='bundle exec rails s thin'
+alias bxr='bundle exec rake'
 alias bxrc='bundle exec rails console'
-alias 9="ps aux | ag rails | awk '{print $2}' | xargs kill -9"
+alias bxrst='bundle exec rails s thin'
+alias 9='ps aux | ag rails | awk '"'"'{print $2}'"'"' | xargs kill -9'
 alias pt='sudo powertop --auto-tune'
-alias emacs='emacs -nw'
-alias emcas='emacs -nw'
-alias kem="ps aux | ag emacs | awk '{print $2}' | xargs kill -9"
-alias dem='DISPLAY= emacs -nw --daemon'
+alias emacs='emacs-snapshot -nw'
+alias emcas='emacs-snapshot -nw'
+alias kem='ps aux | ag emacs-snapshot | awk '"'"'{print $2}'"'"' | xargs kill -9'
+alias dem='DISPLAY= emacs-snapshot -nw --daemon'
 alias em=open_emacs
 open_emacs () {
     file=${1-'.'}
@@ -111,6 +112,8 @@ open_emacs () {
 }
 alias g='git'
 alias grep='ag'
+alias shrug='echo "¯\_(ツ)_/¯" | xclip'
+alias pg_dump6='/usr/lib/postgresql/9.6/bin/pg_dump'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -147,7 +150,7 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\[\033[01;34m\]\u@\h\[\033[00m\] \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 # show process name in title bar
 # If this is an xterm set the title to user@host:dir
@@ -177,9 +180,17 @@ xterm*|rxvt*)
     ;;
 esac
 
+# import db login aliases
+. ~/.pg-aliases
+
 export TERM="xterm-256color"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.vim/gnome-terminal-colors-solarized:$PATH"
 export PATH="/usr/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin::$PATH"
 eval "$(rbenv init -)"
+
+export NVM_DIR="/home/chris/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
