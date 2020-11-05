@@ -28,7 +28,7 @@
 ;; disable annoying GNU copyright shortcuts
 (global-unset-key (kbd "\C-h \C-w"))
 (global-unset-key (kbd "\C-h \C-c"))
-(use-package column-marker)
+;; (use-package column-marker)
 
 ;; productivity plugins
 (use-package powerline
@@ -72,11 +72,13 @@
 
 ;; language / markup plugins
 ;; meant to show the color of hex/css/scss
+(use-package web-mode)
 (use-package elixir-mode)
 (use-package go-mode)
 (use-package haml-mode)
 (use-package haskell-mode)
 (use-package markdown-mode)
+(use-package typescript-mode)
 (use-package yaml-mode)
 (use-package scss-mode
   :config (setq css-indent-offset 2))
@@ -87,6 +89,14 @@
 (add-hook 'js-mode-hook (lambda ()
                           (setq js-indent-level 2)
                           (prettier-js-mode)))
+;; set up ts and tsx hooks
+(add-to-list 'auto-mode-alist '("\\.tsx\\" . web-mode))
+(add-hook 'web-mode-hook (lambda ()
+                           (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                             (prettier-js-mode)
+                           )))
+
+(add-hook 'ts-mode-hook (lambda () (prettier-js-mode)))
 
 (setq ruby-insert-encoding-magic-comment nil)
 
@@ -154,7 +164,7 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (prettier-js yaml-mode use-package smooth-scrolling scss-mode sass-mode rubocop rainbow-mode rainbow-delimiters powerline neotree moe-theme markdown-mode+ json-mode helm-projectile haskell-mode go-mode fill-column-indicator evil-surround evil-magit evil-leader elixir-mode company column-marker coffee-mode))))
+    (web-mode typescript-mode prettier-js yaml-mode use-package smooth-scrolling scss-mode sass-mode rubocop rainbow-mode rainbow-delimiters powerline neotree moe-theme markdown-mode+ json-mode helm-projectile haskell-mode go-mode fill-column-indicator evil-surround evil-magit evil-leader elixir-mode company column-marker coffee-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -5,3 +5,5 @@ src/.emacs.d/eshell/
 src/.emacs.d/projectile-bookmarks.eld
 src/.emacs.d/projectile.cache
 src/.emacs.d/recentf
+node_modules/
+package-lock.json
